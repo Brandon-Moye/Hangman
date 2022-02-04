@@ -83,34 +83,47 @@ let checkForBlanks = visibleArray.includes("#"); //boolean checking if we still 
 let limbCount = 0; //initializing variables
 let checkForCorrect = 0; //initializing variables
 
-//WHILE THERE ARE # (BLANK PLACE HOLDERS) INSIDE THE ARRAY EXECUTE THIS FUNCTION
-while (checkForBlanks === true) {
-  // let guess = window.prompt("Guess a letter"); // allows the user to input letters into the game
-  // let guess = document.querySelector("#letter").value;
-  checkForCorrect = 0;
-  //THIS FOR LOOP IS CHECKING THE ALL OF THE ELEMENTS OF THE ARRAY AGAINST THE INITIAL GUESS
-  for (let i = 0; i < visibleArray.length; i++) {
-    console.log(guess);
+let guessedLetters = [];
+function guessingLetters() {
+  let guessAttempt = document.getElementById("letter").value;
+  guessedLetters.push(guessAttempt);
+  console.log(guessedLetters);
+  return false;
+}
 
-    if (guess === array[i]) {
-      checkForCorrect++;
-      visibleArray[i] = guess; //if the guess matches with the element in the array then it will be replaced w/the correct letter in the correct space
+document.querySelector(".submit").addEventListener("click", function () {
+  guessingLetters();
+  //WHILE THERE ARE # (BLANK PLACE HOLDERS) INSIDE THE ARRAY EXECUTE THIS FUNCTION
+  // had this as a while function and it would freak out the webpage big time, changed to if statement and that fixed the problem
+  if (checkForBlanks === true) {
+    // let guess = window.prompt("Guess a letter"); // allows the user to input letters into the game
+    // let guess = document.querySelector("#letter").value;
+    let guess = guessedLetters[guessedLetters.length - 1];
+    checkForCorrect = 0;
+    //THIS FOR LOOP IS CHECKING THE ALL OF THE ELEMENTS OF THE ARRAY AGAINST THE INITIAL GUESS
+    for (let i = 0; i < visibleArray.length; i++) {
+      console.log(guess);
+
+      if (guess === array[i]) {
+        checkForCorrect++;
+        visibleArray[i] = guess; //if the guess matches with the element in the array then it will be replaced w/the correct letter in the correct space
+      }
     }
-  }
-  console.log(checkForCorrect);
-
-  //this is the logic to count the amount of times a user picks the wrong letter
-  if (checkForCorrect === 0) {
     console.log(checkForCorrect);
-    limbCount++;
-    console.log(`You have lost ${limbCount} limbs`);
-  }
-  checkForBlanks = visibleArray.includes("#"); //used to stop the while loop when there are no more place holders present
-  console.log(visibleArray); //outputs the current array with correct guessed letters
-  // console.log(`You have added this many limbs to the hangman${limbCount++}`);
-}
 
-//THIS IS THE TEMPLATE CODE FOR WHAT WILL HAPPEN WHEN THE PLAYER WINS THE GAME
-if (visibleArray.includes("#") === false) {
-  console.log(`You guessed it! The word was ${Hangmanstring}`);
-}
+    //this is the logic to count the amount of times a user picks the wrong letter
+    if (checkForCorrect === 0) {
+      console.log(checkForCorrect);
+      limbCount++;
+      console.log(`You have lost ${limbCount} limbs`);
+    }
+    checkForBlanks = visibleArray.includes("#"); //used to stop the while loop when there are no more place holders present
+    console.log(visibleArray); //outputs the current array with correct guessed letters
+    // console.log(`You have added this many limbs to the hangman${limbCount++}`);
+  }
+
+  //THIS IS THE TEMPLATE CODE FOR WHAT WILL HAPPEN WHEN THE PLAYER WINS THE GAME
+  if (visibleArray.includes("#") === false) {
+    console.log(`You guessed it! The word was ${Hangmanstring}`);
+  }
+});
