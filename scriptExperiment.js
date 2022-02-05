@@ -84,15 +84,18 @@ let limbCount = 0; //initializing variables
 let checkForCorrect = 0; //initializing variables
 
 let guessedLetters = [];
+
 function guessingLetters() {
   let guessAttempt = document.getElementById("letter").value;
   guessedLetters.push(guessAttempt);
   console.log(guessedLetters);
   return false;
 }
+let newVisibleList = [];
 
 document.querySelector(".submit").addEventListener("click", function () {
   guessingLetters();
+  // console.log(guessedLetters.pop());
   //WHILE THERE ARE # (BLANK PLACE HOLDERS) INSIDE THE ARRAY EXECUTE THIS FUNCTION
   // had this as a while function and it would freak out the webpage big time, changed to if statement and that fixed the problem
   if (checkForBlanks === true) {
@@ -109,14 +112,23 @@ document.querySelector(".submit").addEventListener("click", function () {
         visibleArray[i] = guess; //if the guess matches with the element in the array then it will be replaced w/the correct letter in the correct space
       }
     }
+    //the checkForCorrect parameter can be used to filter out correct letters in the final list
     console.log(checkForCorrect);
+
+    let UniqueList = new Set(guessedLetters);
+    let visibleList = [...UniqueList]; //this variable is what the guessed box will display
+    console.log(visibleList);
 
     //this is the logic to count the amount of times a user picks the wrong letter
     if (checkForCorrect === 0) {
       console.log(checkForCorrect);
       limbCount++;
       console.log(`You have lost ${limbCount} limbs`);
+      newVisibleList = visibleList.splice(1, 0, guess);
+      console.log(visibleList.splice(1, 0, guess));
     }
+    console.log(newVisibleList);
+
     checkForBlanks = visibleArray.includes("#"); //used to stop the while loop when there are no more place holders present
     console.log(visibleArray); //outputs the current array with correct guessed letters
     // console.log(`You have added this many limbs to the hangman${limbCount++}`);
@@ -126,4 +138,21 @@ document.querySelector(".submit").addEventListener("click", function () {
   if (visibleArray.includes("#") === false) {
     console.log(`You guessed it! The word was ${Hangmanstring}`);
   }
+
+  //trying to experiement with something here ->
+  //this could be what I used to display the letters guessed
+  //
+  // let UniqueList = new Set(guessedLetters);
+  // let visibleList = [...UniqueList]; //this variable is what the guessed box will display
+  // console.log(visibleList);
+  // let newVisibleList = [];
+  // //need to create a for loop that ran the array of guessed letters through the blanks to remove correct guessed letters
+  // for (let i = 0; i < array.length; i++) {
+  //   for (let j = 0; j < visibleList.length; j++) {
+  //     if (array[i] != visibleList[j]) {
+  //       newVisibleList = visibleList.splice(0, 0, visibleList[j]);
+  //       console.log(visibleList.splice(visibleList[j], 1));
+  //     }
+  //   }
+  // }
 });
