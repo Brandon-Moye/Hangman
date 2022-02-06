@@ -85,13 +85,18 @@ let checkForCorrect = 0; //initializing variables
 
 let guessedLetters = [];
 
+let UniqueList = new Set(guessedLetters);
+let visibleList = [...UniqueList]; //this variable is what the guessed box will display
+// console.log(visibleList);
+let newVisibleList = [];
+
 function guessingLetters() {
   let guessAttempt = document.getElementById("letter").value;
   guessedLetters.push(guessAttempt);
-  console.log(guessedLetters);
+  // console.log(guessedLetters);
   return false;
 }
-let newVisibleList = [];
+// let newVisibleList = [];
 
 document.querySelector(".submit").addEventListener("click", function () {
   guessingLetters();
@@ -113,21 +118,30 @@ document.querySelector(".submit").addEventListener("click", function () {
       }
     }
     //the checkForCorrect parameter can be used to filter out correct letters in the final list
-    console.log(checkForCorrect);
+    // console.log(checkForCorrect);
 
-    let UniqueList = new Set(guessedLetters);
-    let visibleList = [...UniqueList]; //this variable is what the guessed box will display
-    console.log(visibleList);
+    // let UniqueList = new Set(guessedLetters);
+    // let visibleList = [...UniqueList]; //this variable is what the guessed box will display
+    // console.log(visibleList);
 
     //this is the logic to count the amount of times a user picks the wrong letter
+    // console.log(visibleList);
     if (checkForCorrect === 0) {
-      console.log(checkForCorrect);
+      // console.log(checkForCorrect);
       limbCount++;
-      console.log(`You have lost ${limbCount} limbs`);
-      newVisibleList = visibleList.splice(1, 0, guess);
-      console.log(visibleList.splice(1, 0, guess));
+      console.log(`You have guessed ${limbCount} wrong letters`);
+      // console.log(guessedLetters);
+      // console.log(guess);
+      newVisibleList.unshift(guess);
+      // console.log(newVisibleList);
+      // I don't believe this code block will work ->
+      // newVisibleList = visibleList.splice(1, 0, guess);
+      // console.log(visibleList.splice(1, 0, guess));
+      // <-
     }
     console.log(newVisibleList);
+
+    // console.log(newVisibleList);
 
     checkForBlanks = visibleArray.includes("#"); //used to stop the while loop when there are no more place holders present
     console.log(visibleArray); //outputs the current array with correct guessed letters
@@ -144,12 +158,12 @@ document.querySelector(".submit").addEventListener("click", function () {
   //
   // let UniqueList = new Set(guessedLetters);
   // let visibleList = [...UniqueList]; //this variable is what the guessed box will display
-  // console.log(visibleList);
+  // // console.log(visibleList);
   // let newVisibleList = [];
   // //need to create a for loop that ran the array of guessed letters through the blanks to remove correct guessed letters
   // for (let i = 0; i < array.length; i++) {
   //   for (let j = 0; j < visibleList.length; j++) {
-  //     if (array[i] != visibleList[j]) {
+  //     if (array[i] === visibleList[j]) {
   //       newVisibleList = visibleList.splice(0, 0, visibleList[j]);
   //       console.log(visibleList.splice(visibleList[j], 1));
   //     }
