@@ -9,11 +9,12 @@ I decided to add to the guess list as the code is checking if the letter was in 
 - Current features: (all within the console)
   - Array of provided word is displayed using '#' as the blanks
   - Once a correct letter is input, the '#' will be replaced with it
-  - There is a limb counter so every time a player guesses a wrong answer the code keeps track so I can implement a game over code
+  - There is a limb counter so every time a player guesses a wrong answer the code keeps track so I can implement a game       over code
+  - Loop to reveal blanks before player starts guessing letters
   - There is a list of wrong guesses only generated so the player can keep track of what they have submitted
 - Next step features:
   - Move the displayed output from the console onto the webpage with CSS and HTML
-  - Develop a loop to reveal blanks before player starts guessing letters?
+
   - Develop a game over code block based on the number of wrong guesses (limb count)
   - Code input box to only allow for one letter at a time to be input, and no repeats to be input
 
