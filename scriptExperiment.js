@@ -1,13 +1,5 @@
 "use strict";
 
-//
-//
-// -----------------------------------------------------------------------------------------------------------------
-// EXPERIMENTING WITH CHANGING THE PROMPT/INPUT FEATURE
-// -----------------------------------------------------------------------------------------------------------------
-//
-//
-
 //THIS IS THE WORD THE USER IS TRYING TO GUESS
 /* I am thinking of having a bank of words that let people know more 
 about me and my interests, or just do like an animal list and go from there */
@@ -44,6 +36,31 @@ for (let i = 0; i < visibleArray.length; i++) {
     console.log(visibleArray);
   }
 }
+let addedBlanks = document.getElementById("visibleCells");
+for (let i = 0; i < visibleArray.length; i++) {
+  let myColumn = document.createElement("td");
+  myColumn.id = "cell" + i;
+  let myColumnId = `"${myColumn.id}"`;
+  console.log(myColumnId);
+  console.log(array[i]);
+  // if (array[i] === String) {
+  // document.getElementById(myColumnId).value = "#";
+  //
+  //
+  //
+  //this works! will need to connect it throughout the rest of the code
+  myColumn.innerHTML = visibleArray[i];
+  // }
+  //maybe try pushing to new array?
+  addedBlanks.appendChild(myColumn);
+  //
+  //
+  //
+}
+
+// this does work for somereason -->
+// document.getElementById("cell0").innerHTML = array[2];
+// <--
 
 document.querySelector(".submit").addEventListener("click", function () {
   guessingLetters(); //calling the function above
