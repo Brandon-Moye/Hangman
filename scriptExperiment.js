@@ -70,10 +70,13 @@ document.querySelector(".submit").addEventListener("click", function () {
     let guess = guessedLetters[guessedLetters.length - 1]; //pulls the most recent guess from the guessedLetters array made above in the function
     checkForCorrect = 0; //initializing variable
     //THIS FOR LOOP IS CHECKING THE ALL OF THE ELEMENTS OF THE ARRAY AGAINST THE INITIAL GUESS
+
     for (let i = 0; i < visibleArray.length; i++) {
       if (guess === array[i]) {
         checkForCorrect++;
         visibleArray[i] = guess; //if the guess matches with the element in the array then it will be replaced w/the correct letter in the correct space
+        addedBlanks.children[i].innerHTML = guess;
+        // visibleCells.cells[i].innerHTML = guess;
       }
     }
 
