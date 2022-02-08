@@ -5,10 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hangman</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="wordBlock">Word</div>
-    <form onsubmit="return guessingLetters()">
+    <!-- <div id="letterContainer" class="letterContainer">
+      <div class="letterBlanks">Blanks1</div>
+    </div> -->
+    <table id="visibleCells">
+      Blanks
+    </table>
+    <form onsubmit="guessingLetters(); return false">
       <p><input id="letter" type="text" /></p>
       <button class="submit" type="submit">Guess</button>
     </form>
