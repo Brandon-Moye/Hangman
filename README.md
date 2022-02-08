@@ -3,6 +3,7 @@
 This is a project in the works to have a functioning hangman game.
 
 Currently it utilizes while/for loops and arrays indices.
+
 2/7/2022
 Made progress with population a webpage using the table element and adding columns based on the number of characters in the array. It needs to be connected to the rest of the code and change when the correct value is guessed like in the console.
 
