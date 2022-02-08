@@ -3,6 +3,8 @@
 This is a project in the works to have a functioning hangman game.
 
 Currently it utilizes while/for loops and arrays indices.
+2/7/2022
+Made progress with population a webpage using the table element and adding columns based on the number of characters in the array. It needs to be connected to the rest of the code and change when the correct value is guessed like in the console.
 
 2/6/2022
 I decided to add to the guess list as the code is checking if the letter was in the word or not. I used the .unshift() method to add to the beginning of the list every time a player inputs a wrong answer.
