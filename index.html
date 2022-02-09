@@ -8,17 +8,25 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="wordBlock">Word</div>
     <!-- <div id="letterContainer" class="letterContainer">
       <div class="letterBlanks">Blanks1</div>
     </div> -->
-    <table id="visibleCells">
-      Blanks
-    </table>
-    <form onsubmit="guessingLetters(); return false">
-      <p><input id="letter" type="text" /></p>
-      <button class="submit" type="submit">Guess</button>
-    </form>
+    <div class="gameContainer">
+      <table id="visibleCells"></table>
+      <div id="hint"></div>
+      <form
+        class="form"
+        autocomplete="off"
+        onsubmit="guessingLetters(); return false"
+      >
+        <input id="letter" type="text" />
+        <button class="submit" type="submit">Guess</button>
+      </form>
+      <p class="incorrectLettersTitle">Incorrect Letters</p>
+      <div id="wrongGuessContainer"></div>
+      <div id="finalMessage"></div>
+      <button class="reset">Play Again!</button>
+    </div>
     <script src="scriptExperiment.js"></script>
   </body>
 </html>
