@@ -1,11 +1,35 @@
 "use strict";
 
+let wordBank = {
+  0: ["succession", "game of thrones", "rupauls drag race", "family guy"],
+  1: ["wyoming", "yellowstone", "the great smoky sountains", "new york city"],
+  2: ["sushi", "coffee", "stouts", "hummus"],
+  3: ["camping", "video games", "coding", "cooking"],
+};
+
+const categoriesArray = ["tvShows", "places", "foodAndDrinks", "hobbies"];
+function getRandomKeyAndValue(max) {
+  return Math.floor(Math.random() * max);
+}
+let randomKey = getRandomKeyAndValue(4);
+let randomValue = getRandomKeyAndValue(4);
+
 //THIS IS THE WORD THE USER IS TRYING TO GUESS
 /* I am thinking of having a bank of words that let people know more 
 about me and my interests, or just do like an animal list and go from there */
-let Hangmanstring = "Roll Tide";
+let Hangmanstring = wordBank[randomKey][randomValue];
 const array = [...Hangmanstring]; //this breaks the string up and even dedicates an array index to the space, should be able to count spaces
 
+if (randomKey === 0) {
+  randomKey = "tvShows";
+} else if (randomKey === 1) {
+  randomKey = "places";
+} else if (randomKey === 2) {
+  randomKey = "foodAndDrinks";
+} else if (randomKey === 3) {
+  randomKey = "hobbies";
+}
+document.getElementById("hint").innerHTML = `Hint: favorite ${randomKey}`;
 //CREATING THE ARRAY VISIBLE TO THE USER BASED ON WHAT THE SECRET WORD IS
 const visibleArray = [..."#".repeat(array.length)]; //displays a string with # as the filler
 // console.log(visibleArray.length); //will show the length of the array the player is trying to guess
@@ -62,6 +86,21 @@ for (let i = 0; i < visibleArray.length; i++) {
 // document.getElementById("cell0").innerHTML = array[2];
 // <--
 
+// RANDOM WORD BANK GENERATOR
+
+// console.log(categoriesArray[0]);
+
+// console.log(randomKey, randomValue);
+
+// console.log(5);
+// console.log(randomKey, randomValue);
+// console.log(wordBank.randomKey[randomValue]);
+// expected output: 0, 1 or 2
+
+//this is a way to call things in the object
+
+// console.log(wordBank[0]["tvShows"][0]);
+
 document.querySelector(".submit").addEventListener("click", function () {
   guessingLetters(); //calling the function above
   // had this as a while function and it would freak out the webpage big time, changed to if statement and that fixed the problem
@@ -86,7 +125,10 @@ document.querySelector(".submit").addEventListener("click", function () {
       console.log(`You have guessed ${limbCount} wrong letters`);
       newVisibleList.unshift(guess); //adding the current guess value to the wrong letters list
     }
+
     console.log(`You're incorrect guesses are: ${newVisibleList}`);
+    console.log(newVisibleList);
+    document.getElementById("wrongGuessContainer").innerHTML = newVisibleList;
 
     checkForBlanks = visibleArray.includes("#"); //used to stop the while loop when there are no more place holders present
     console.log(visibleArray); //outputs the current/live version of the array with correct guessed letters
@@ -95,5 +137,18 @@ document.querySelector(".submit").addEventListener("click", function () {
   //THIS IS THE TEMPLATE CODE FOR WHAT WILL HAPPEN WHEN THE PLAYER WINS THE GAME
   if (checkForBlanks === false) {
     console.log(`You guessed it! The word was ${Hangmanstring}`);
+    document.getElementById(
+      "finalMessage"
+    ).innerHTML = `You guessed it! The answer is ${Hangmanstring}`;
   }
+  //clearing the guess box after submit
+  function clearGuess() {
+    document.getElementById("letter").value = "";
+  }
+  clearGuess();
+});
+
+document.querySelector(".reset").addEventListener("click", function () {
+  //need to write code to reset the game and pick a new word to try to solve
+  location.reload(); //just reloading the page now
 });
