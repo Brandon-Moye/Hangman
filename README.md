@@ -4,6 +4,15 @@ This is a project in the works to have a functioning hangman game.
 
 Currently it utilizes while/for loops and arrays indices.
 
+2/8/2022
+Current features:
+- Blank boxes will autogenerate on the page after a random word has been selected from the wordBank object
+- Incorrect letters will populate in an incorrect div
+- hints are provided based on what key the values are in to help the user
+Next steps:
+- create a hangman animation based on the number incorrect guesses
+- make it more ✨visually appealing✨
+
 2/7/2022
 Made progress with population a webpage using the table element and adding columns based on the number of characters in the array. It needs to be connected to the rest of the code and change when the correct value is guessed like in the console.
 
