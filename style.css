@@ -20,12 +20,52 @@ body {
   position: relative;
 }
 
+.gameContainer {
+  margin: auto;
+  width: 85%;
+  height: auto;
+  /* padding: 10rem; */
+}
+
+.form {
+  margin: auto;
+  width: 50%;
+  padding: 1rem;
+}
+
+.submit {
+  margin: auto;
+  width: 50%;
+}
+
+#hint {
+  font-size: 50px;
+}
+
+#wrongGuessContainer {
+  border: 10px solid red;
+  /* width: 50px; */
+  /* height: 50px; */
+  color: black;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 100px;
+  font-size: 50px;
+}
+
 td {
   border: 1px solid black;
   /* width: 50px; */
   /* height: 50px; */
   color: black;
-  justify-items: center;
+  justify-content: center;
   align-items: center;
-  padding: 10px;
+  width: 100px;
+  height: 100px;
+  font-size: 50px;
+}
+
+#finalMessage {
+  font-size: 50px;
 }
