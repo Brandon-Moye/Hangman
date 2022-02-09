@@ -7,14 +7,14 @@ Currently it utilizes while/for loops and arrays indices.
 2/8/2022
 - Current features:
   - Blank boxes will autogenerate on the page after a random word has been selected from the wordBank object
-  - Incorrect letters will populate in an incorrect div
-  - hints are provided based on what key the values are in to help the user
+  - Incorrect letters will populate in an incorrect letter section
+  - hints are provided based on what the value's keys are to help the user
 - Next steps:
   - create a hangman animation based on the number incorrect guesses
   - make it more ✨visually appealing✨
 
 2/7/2022
-Made progress with population a webpage using the table element and adding columns based on the number of characters in the array. It needs to be connected to the rest of the code and change when the correct value is guessed like in the console.
+Made progress with populating a webpage using the table element and adding columns based on the number of characters in the array. It needs to be connected to the rest of the code and change when the correct value is guessed like in the console.
 
 2/6/2022
 I decided to add to the guess list as the code is checking if the letter was in the word or not. I used the .unshift() method to add to the beginning of the list every time a player inputs a wrong answer.
