@@ -107,10 +107,13 @@ for (let i = 0; i < visibleArray.length; i++) {
 
 // console.log(wordBank[0]["tvShows"][0]);
 
+// const letterValidation = document.getElementById("letter").value;
+
 document.querySelector(".submit").addEventListener("click", function () {
   guessingLetters(); //calling the function above
   // had this as a while function and it would freak out the webpage big time, changed to if statement and that fixed the problem
   // this is just checking if the word has been guessed or not and will only run the code if there are blanks remaining
+
   if (checkForBlanks === true) {
     let guess = guessedLetters[guessedLetters.length - 1]; //pulls the most recent guess from the guessedLetters array made above in the function
     checkForCorrect = 0; //initializing variable
@@ -153,6 +156,9 @@ document.querySelector(".submit").addEventListener("click", function () {
         document.getElementById(
           "finalMessage"
         ).innerHTML = `Oh no! The correct word was ${Hangmanstring}. Try again!`;
+        document.getElementById("letter").classList.add("hidden");
+        document.getElementById("submit").classList.add("hidden");
+        document.getElementById("hangmanContainer").classList.add("gameLost");
       }
     }
 
@@ -170,8 +176,11 @@ document.querySelector(".submit").addEventListener("click", function () {
     console.log(`You guessed it! The word was ${Hangmanstring}`);
     document.getElementById(
       "finalMessage"
-    ).innerHTML = `You guessed it! The answer is ${Hangmanstring}`;
+    ).innerHTML = `You guessed it! The answer is "${Hangmanstring}"`;
     document.getElementById("reset").classList.remove("hidden");
+    document.getElementById("letter").classList.add("hidden");
+    document.getElementById("submit").classList.add("hidden");
+    document.getElementById("hangmanContainer").classList.add("gameWon");
   }
   //clearing the guess box after submit
   function clearGuess() {
@@ -181,6 +190,11 @@ document.querySelector(".submit").addEventListener("click", function () {
 });
 
 document.querySelector(".reset").addEventListener("click", function () {
+  //need to write code to reset the game and pick a new word to try to solve
+  location.reload(); //just reloading the page now
+});
+
+document.querySelector(".reload").addEventListener("click", function () {
   //need to write code to reset the game and pick a new word to try to solve
   location.reload(); //just reloading the page now
 });
