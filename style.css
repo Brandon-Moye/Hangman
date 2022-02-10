@@ -60,12 +60,14 @@ body {
   border: none;
   background: #e67e22;
   color: #733f11;
+  transition: all 0.3s;
 }
 
 .submit:hover {
   background: #733f11;
   color: #e67e22;
   cursor: pointer;
+  transition: all 0.3s;
 }
 
 #letter {
@@ -76,14 +78,44 @@ body {
   text-align: center;
   background: lightgrey;
   /* padding: 1rem 1rem; */
+  outline: none;
+}
+
+.reloadAndHintContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 #hint {
-  font-size: 50px;
-  display: flex;
+  font-size: 3rem;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  margin-left: 1rem;
   margin-bottom: 1rem;
+}
+
+.reload {
+  /* margin: 0 auto; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  font-size: 2.5rem;
+  padding: 1rem 1rem;
+  /* margin-right: 1rem; */
+  border-radius: 2rem;
+  border: none;
+  background: #f1c40f;
+  color: #302703;
+  transition: all 0.3s;
+}
+
+.reload:hover {
+  background: #302703;
+  color: #f1c40f;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .incorrectLettersTitle {
@@ -153,16 +185,28 @@ td {
   padding: 1rem 1rem;
   border-radius: 2.5rem;
   border: none;
+  transition: all 0.3s;
 }
 
 .reset:hover {
   background: black;
   color: lightgrey;
   cursor: pointer;
+  transition: all 0.3s;
 }
 
 .hidden {
   display: none;
+}
+
+.gameWon {
+  background: #2ecc71;
+  transition: all 0.3s;
+}
+
+.gameLost {
+  background: #d63031;
+  transition: all 0.5s;
 }
 
 .platform {
@@ -224,7 +268,7 @@ td {
   border-left: 1px solid black;
   height: 2.5rem;
   transform: rotate(340deg);
-  top: -33.775rem;
+  top: -34rem;
   left: 35.74rem;
 }
 
@@ -247,6 +291,6 @@ td {
   border-left: 1px solid black;
   height: 2.5rem;
   transform: rotate(340deg);
-  top: -35.4rem;
-  left: 35.74rem;
+  top: -35.6rem;
+  left: 35.7rem;
 }
