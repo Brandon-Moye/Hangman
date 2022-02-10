@@ -4,6 +4,12 @@ This is a project in the works to have a functioning hangman game.
 
 Currently it utilizes while/for loops and arrays indices.
 
+2/9/2022 I have pretty much completed the majority of the game! I have a few small features and additional styling I would like to do before I call it finished
+- Next Steps:
+  - Add a reset button that lives on the main page in case a user gets a repeat word
+  - continue styling the sheet and making iteractions/effects smoother  
+
+
 2/8/2022
 - Current features:
   - Blank boxes will autogenerate on the page after a random word has been selected from the wordBank object
