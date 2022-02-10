@@ -17,55 +17,236 @@ body {
   font-weight: 400;
   color: black;
   overflow-x: hidden;
-  position: relative;
+  background-color: grey;
+}
+
+.title {
+  display: flex;
+  font-weight: 600;
+  font-size: 5rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .gameContainer {
-  margin: auto;
-  width: 85%;
-  height: auto;
-  /* padding: 10rem; */
+  max-width: 120rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+}
+
+.hangmanContainer {
+  /* display: relative; */
+  width: 75rem;
+  margin: 0 auto;
+  height: 30rem;
+  border-radius: 5rem;
+  background: lightgrey;
+  margin-bottom: 2rem;
 }
 
 .form {
-  margin: auto;
-  width: 50%;
-  padding: 1rem;
+  padding: 1rem 1rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5rem;
 }
 
 .submit {
-  margin: auto;
-  width: 50%;
+  font-size: 5rem;
+  padding: 1rem 1rem;
+  margin-left: 1rem;
+  border-radius: 2.5rem;
+  border: none;
+  background: #e67e22;
+  color: #733f11;
+}
+
+.submit:hover {
+  background: #733f11;
+  color: #e67e22;
+  cursor: pointer;
+}
+
+#letter {
+  font-size: 5rem;
+  width: 10rem;
+  border-radius: 2.5rem;
+  border: none;
+  text-align: center;
+  background: lightgrey;
+  /* padding: 1rem 1rem; */
 }
 
 #hint {
   font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.incorrectLettersTitle {
+  font-size: 4rem;
+  font-weight: 450;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 #wrongGuessContainer {
-  border: 10px solid red;
-  /* width: 50px; */
-  /* height: 50px; */
-  color: black;
+  margin: 0 auto;
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: auto;
-  height: 100px;
-  font-size: 50px;
+  /* border: 0.5rem solid #400e0f; */
+  /* width: 50px; */
+  /* height: 50px; */
+  color: #400e0f;
+  width: 75rem;
+  height: 10rem;
+  font-size: 5rem;
+  margin-bottom: 1.2rem;
+  border-radius: 2.5rem;
+  background: #e68383;
+}
+
+#visibleCells {
+  display: flex;
+  gap: 0.25rem;
+  margin: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 td {
-  border: 1px solid black;
-  /* width: 50px; */
-  /* height: 50px; */
-  color: black;
-  justify-content: center;
+  /* border: 1px solid black; */
+  display: flex;
   align-items: center;
-  width: 100px;
-  height: 100px;
-  font-size: 50px;
+  justify-content: center;
+  color: black;
+  width: 10rem;
+  height: 10rem;
+  font-size: 5rem;
+  /* border-radius: 20%; */
+  margin-bottom: 1rem;
+  background-color: lightgrey;
+  /* padding: 0.5rem 0.5rem; */
 }
 
 #finalMessage {
-  font-size: 50px;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.reset {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  padding: 1rem 1rem;
+  border-radius: 2.5rem;
+  border: none;
+}
+
+.reset:hover {
+  background: black;
+  color: lightgrey;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.platform {
+  border-top: 1px solid black;
+  position: relative;
+  top: 250px;
+  left: 250px;
+  width: 200px;
+  /* height: 50px; */
+}
+
+.post {
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  position: relative;
+  width: 10rem;
+  height: 20rem;
+  top: 5rem;
+  left: 27.5rem;
+}
+
+.rope {
+  border-left: 1px solid black;
+  position: relative;
+  height: 7rem;
+  top: -15rem;
+  left: 37.5rem;
+}
+
+.head {
+  border: 1px solid black;
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  top: -15rem;
+  left: 36rem;
+}
+
+.body {
+  position: relative;
+  border-left: 1px solid black;
+  height: 5rem;
+  top: -15rem;
+  left: 37.5rem;
+}
+
+.leftArm {
+  position: relative;
+  border-left: 1px solid black;
+  height: 2.5rem;
+  transform: rotate(20deg);
+  top: -6rem;
+  left: 34.8rem;
+}
+
+.rightArm {
+  position: relative;
+  border-left: 1px solid black;
+  height: 2.5rem;
+  transform: rotate(340deg);
+  top: -33.775rem;
+  left: 35.74rem;
+}
+
+.blank {
+  background-color: black;
+  width: 5rem;
+}
+
+.leftLeg {
+  position: relative;
+  border-left: 1px solid black;
+  height: 2.5rem;
+  transform: rotate(20deg);
+  top: -7.6rem;
+  left: 34.8rem;
+}
+
+.rightLeg {
+  position: relative;
+  border-left: 1px solid black;
+  height: 2.5rem;
+  transform: rotate(340deg);
+  top: -35.4rem;
+  left: 35.74rem;
 }
