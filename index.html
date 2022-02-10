@@ -13,7 +13,7 @@
     </div> -->
     <h1 class="title">Hangman</h1>
     <div class="gameContainer">
-      <div class="hangmanContainer">
+      <div id="hangmanContainer" class="hangmanContainer">
         <div id="platform" class="hidden platform"></div>
         <div id="post" class="hidden post"></div>
         <div id="rope" class="hidden rope"></div>
@@ -25,14 +25,17 @@
         <div id="rightLeg" class="hidden rightLeg"></div>
       </div>
       <table id="visibleCells"></table>
-      <div id="hint"></div>
+      <div class="reloadAndHintContainer">
+        <button class="reload" type="button">Reload</button>
+        <div id="hint"></div>
+      </div>
       <form
         class="form"
         autocomplete="off"
         onsubmit="guessingLetters(); return false"
       >
         <input id="letter" type="text" />
-        <button class="submit" type="submit">Guess</button>
+        <button id="submit" class="submit" type="submit">Guess</button>
       </form>
       <h2 class="incorrectLettersTitle">Incorrect Letters</h2>
       <div id="wrongGuessContainer"></div>
