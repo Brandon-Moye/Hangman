@@ -2,7 +2,7 @@
 
 let wordBank = {
   0: ["succession", "game of thrones", "rupauls drag race", "family guy"],
-  1: ["wyoming", "yellowstone", "the great smoky sountains", "new york city"],
+  1: ["wyoming", "yellowstone", "the smoky mountains", "new york city"],
   2: ["sushi", "coffee", "stouts", "hummus"],
   3: ["camping", "video games", "coding", "cooking"],
 };
@@ -31,12 +31,12 @@ if (randomKey === 0) {
 }
 document.getElementById("hint").innerHTML = `Hint: favorite ${randomKey}`;
 //CREATING THE ARRAY VISIBLE TO THE USER BASED ON WHAT THE SECRET WORD IS
-const visibleArray = [..."#".repeat(array.length)]; //displays a string with # as the filler
+const visibleArray = [..."?".repeat(array.length)]; //displays a string with # as the filler
 // console.log(visibleArray.length); //will show the length of the array the player is trying to guess
 // console.log(visibleArray.includes("#")); //verifying it is blanked off for the programmer
 
 //boolean checking if we still have fillers in the string - code will run if true
-let checkForBlanks = visibleArray.includes("#");
+let checkForBlanks = visibleArray.includes("?");
 let limbCount = 0; //initializing variables - how many wrong letters the player has guessed
 let checkForCorrect = 0; //initializing variables - used to edit wrong letters list and add to the limb count
 let guessedLetters = []; //initializing variable
@@ -51,34 +51,40 @@ function guessingLetters() {
 
 // for loop to reveal any blanks in the hangman string
 // I can get the logic to work but when it gets in a loop it fails
+// for (let i = 0; i < visibleArray.length; i++) {
+//   let checkForSpaces = array[i].indexOf(" "); // returns 0 if true, -1 if false
+//   // console.log(checkForSpaces);
+//   if (checkForSpaces === 0) {
+//     //this is what reads as true
+//     visibleArray[i] = " ";
+
+//     console.log(visibleArray);
+//   }
+// }
+let addedBlanks = document.getElementById("visibleCells");
 for (let i = 0; i < visibleArray.length; i++) {
   let checkForSpaces = array[i].indexOf(" "); // returns 0 if true, -1 if false
   // console.log(checkForSpaces);
-  if (checkForSpaces === 0) {
-    //this is what reads as true
-    visibleArray[i] = " ";
-    console.log(visibleArray);
-  }
-}
-let addedBlanks = document.getElementById("visibleCells");
-for (let i = 0; i < visibleArray.length; i++) {
+  //
   let myColumn = document.createElement("td");
   myColumn.id = "cell" + i;
   let myColumnId = `"${myColumn.id}"`;
   console.log(myColumnId);
   console.log(array[i]);
-  // if (array[i] === String) {
-  // document.getElementById(myColumnId).value = "#";
-  //
-  //
-  //
   //this works! will need to connect it throughout the rest of the code
   myColumn.innerHTML = visibleArray[i];
   // }
   //maybe try pushing to new array?
   addedBlanks.appendChild(myColumn);
   //
-  //
+  //converts blanks into black squares for easier visualization
+  if (checkForSpaces === 0) {
+    //this is what reads as true
+    visibleArray[i] = " ";
+    document.getElementById("cell" + i).classList.add("blank");
+    console.log(visibleArray);
+  }
+
   //
 }
 
@@ -124,22 +130,48 @@ document.querySelector(".submit").addEventListener("click", function () {
       limbCount++;
       console.log(`You have guessed ${limbCount} wrong letters`);
       newVisibleList.unshift(guess); //adding the current guess value to the wrong letters list
+      if (limbCount === 1) {
+        document.getElementById("platform").classList.remove("hidden");
+      } else if (limbCount === 2) {
+        document.getElementById("post").classList.remove("hidden");
+      } else if (limbCount === 3) {
+        document.getElementById("rope").classList.remove("hidden");
+      } else if (limbCount === 4) {
+        document.getElementById("head").classList.remove("hidden");
+      } else if (limbCount === 5) {
+        document.getElementById("body").classList.remove("hidden");
+      } else if (limbCount === 6) {
+        document.getElementById("leftArm").classList.remove("hidden");
+      } else if (limbCount === 7) {
+        document.getElementById("rightArm").classList.remove("hidden");
+      } else if (limbCount === 8) {
+        document.getElementById("leftLeg").classList.remove("hidden");
+      } else if (limbCount === 9) {
+        document.getElementById("rightLeg").classList.remove("hidden");
+      } else if (limbCount > 9) {
+        document.getElementById("reset").classList.remove("hidden");
+        document.getElementById(
+          "finalMessage"
+        ).innerHTML = `Oh no! The correct word was ${Hangmanstring}. Try again!`;
+      }
     }
 
     console.log(`You're incorrect guesses are: ${newVisibleList}`);
     console.log(newVisibleList);
     document.getElementById("wrongGuessContainer").innerHTML = newVisibleList;
 
-    checkForBlanks = visibleArray.includes("#"); //used to stop the while loop when there are no more place holders present
+    checkForBlanks = visibleArray.includes("?");
+    console.log(checkForBlanks); //used to stop the while loop when there are no more place holders present
     console.log(visibleArray); //outputs the current/live version of the array with correct guessed letters
   }
 
   //THIS IS THE TEMPLATE CODE FOR WHAT WILL HAPPEN WHEN THE PLAYER WINS THE GAME
-  if (checkForBlanks === false) {
+  if (checkForBlanks === false && limbCount <= 9) {
     console.log(`You guessed it! The word was ${Hangmanstring}`);
     document.getElementById(
       "finalMessage"
     ).innerHTML = `You guessed it! The answer is ${Hangmanstring}`;
+    document.getElementById("reset").classList.remove("hidden");
   }
   //clearing the guess box after submit
   function clearGuess() {
