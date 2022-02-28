@@ -1,5 +1,21 @@
 "use strict";
+//refactoring edits from jeff
 
+function removeClassName (idName, className) {
+  document.getElementById(idName).classList.remove(className);
+}
+
+function addClassName (idName, className) {
+  document.getElementById(idName).classList.add(className);
+}
+
+function doByElementId (idName) {
+  document.getElementById(idName);
+}
+
+//
+//-----------------------------------------------------------------------------------------------------------------------
+//
 let wordBank = {
   0: ["succession", "game of thrones", "rupauls drag race", "family guy"],
   1: ["wyoming", "yellowstone", "the smoky mountains", "new york city"],
@@ -8,40 +24,39 @@ let wordBank = {
 };
 
 const categoriesArray = ["tvShows", "places", "foodAndDrinks", "hobbies"];
-function getRandomKeyAndValue(max) {
+function getRandomCategoryAndWord(max) {
   return Math.floor(Math.random() * max);
 }
-let randomKey = getRandomKeyAndValue(4);
-let randomValue = getRandomKeyAndValue(4);
+let randomCategory = getRandomCategoryAndWord(4);
+let randomWord = getRandomCategoryAndWord(4);
 
 //THIS IS THE WORD THE USER IS TRYING TO GUESS
 /* I am thinking of having a bank of words that let people know more 
 about me and my interests, or just do like an animal list and go from there */
-let Hangmanstring = wordBank[randomKey][randomValue];
+let Hangmanstring = wordBank[randomCategory][randomWord];
 const array = [...Hangmanstring]; //this breaks the string up and even dedicates an array index to the space, should be able to count spaces
 
-if (randomKey === 0) {
-  randomKey = "tvShows";
-} else if (randomKey === 1) {
-  randomKey = "places";
-} else if (randomKey === 2) {
-  randomKey = "foodAndDrinks";
-} else if (randomKey === 3) {
-  randomKey = "hobbies";
+if (randomCategory === 0) {
+  randomCategory = "tvShows";
+} else if (randomCategory === 1) {
+  randomCategory = "places";
+} else if (randomCategory === 2) {
+  randomCategory = "foodAndDrinks";
+} else if (randomCategory === 3) {
+  randomCategory = "hobbies";
 }
-document.getElementById("hint").innerHTML = `Hint: favorite ${randomKey}`;
+document.getElementById("hint").innerHTML = `Hint: favorite ${randomCategory}`;
+// doByElementId("hint").innerHTML = `Hint: favorite ${randomCategory}`;
 //CREATING THE ARRAY VISIBLE TO THE USER BASED ON WHAT THE SECRET WORD IS
-const visibleArray = [..."?".repeat(array.length)]; //displays a string with # as the filler
-// console.log(visibleArray.length); //will show the length of the array the player is trying to guess
-// console.log(visibleArray.includes("#")); //verifying it is blanked off for the programmer
+const ArrayVisibleToPlayer = [..."?".repeat(array.length)]; //displays a string with # as the filler
 
 //boolean checking if we still have fillers in the string - code will run if true
-let checkForBlanks = visibleArray.includes("?");
-let limbCount = 0; //initializing variables - how many wrong letters the player has guessed
-let checkForCorrect = 0; //initializing variables - used to edit wrong letters list and add to the limb count
+let checkForBlanks = ArrayVisibleToPlayer.includes("?");
+let incorrectGuessCount = 0; //initializing variables - how many wrong letters the player has guessed
+let checkForCorrectGuess = 0; //initializing variables - used to edit wrong letters list and add to the limb count
 let guessedLetters = []; //initializing variable
 
-let newVisibleList = [];
+let incorrectLettersList = [];
 
 function guessingLetters() {
   let guessAttempt = document.getElementById("letter").value;
@@ -49,138 +64,91 @@ function guessingLetters() {
   return false;
 }
 
-// for loop to reveal any blanks in the hangman string
-// I can get the logic to work but when it gets in a loop it fails
-// for (let i = 0; i < visibleArray.length; i++) {
-//   let checkForSpaces = array[i].indexOf(" "); // returns 0 if true, -1 if false
-//   // console.log(checkForSpaces);
-//   if (checkForSpaces === 0) {
-//     //this is what reads as true
-//     visibleArray[i] = " ";
-
-//     console.log(visibleArray);
-//   }
-// }
 let addedBlanks = document.getElementById("visibleCells");
-for (let i = 0; i < visibleArray.length; i++) {
+for (let i = 0; i < ArrayVisibleToPlayer.length; i++) {
   let checkForSpaces = array[i].indexOf(" "); // returns 0 if true, -1 if false
-  // console.log(checkForSpaces);
-  //
-  let myColumn = document.createElement("td");
-  myColumn.id = "cell" + i;
-  let myColumnId = `"${myColumn.id}"`;
-  console.log(myColumnId);
-  console.log(array[i]);
-  //this works! will need to connect it throughout the rest of the code
-  myColumn.innerHTML = visibleArray[i];
-  // }
-  //maybe try pushing to new array?
-  addedBlanks.appendChild(myColumn);
-  //
-  //converts blanks into black squares for easier visualization
+  let blankForLetter = document.createElement("td");
+  blankForLetter.id = "cell" + i;
+  // let myColumnId = `"${myColumn.id}"`;
+  blankForLetter.innerHTML = ArrayVisibleToPlayer[i];
+  addedBlanks.appendChild(blankForLetter);
   if (checkForSpaces === 0) {
-    //this is what reads as true
-    visibleArray[i] = " ";
-    document.getElementById("cell" + i).classList.add("blank");
-    console.log(visibleArray);
+    ArrayVisibleToPlayer[i] = " ";
+    // document.getElementById("cell" + i).classList.add("blank");
+    addClassName(("cell" + i),"blank"); //this is a short version for the line above
   }
 
-  //
 }
-
-// this does work for somereason -->
-// document.getElementById("cell0").innerHTML = array[2];
-// <--
-
-// RANDOM WORD BANK GENERATOR
-
-// console.log(categoriesArray[0]);
-
-// console.log(randomKey, randomValue);
-
-// console.log(5);
-// console.log(randomKey, randomValue);
-// console.log(wordBank.randomKey[randomValue]);
-// expected output: 0, 1 or 2
-
-//this is a way to call things in the object
-
-// console.log(wordBank[0]["tvShows"][0]);
-
-// const letterValidation = document.getElementById("letter").value;
 
 document.querySelector(".submit").addEventListener("click", function () {
   guessingLetters(); //calling the function above
-  // had this as a while function and it would freak out the webpage big time, changed to if statement and that fixed the problem
-  // this is just checking if the word has been guessed or not and will only run the code if there are blanks remaining
-
   if (checkForBlanks === true) {
     let guess = guessedLetters[guessedLetters.length - 1]; //pulls the most recent guess from the guessedLetters array made above in the function
-    checkForCorrect = 0; //initializing variable
+    checkForCorrectGuess = 0; //initializing variable
     //THIS FOR LOOP IS CHECKING THE ALL OF THE ELEMENTS OF THE ARRAY AGAINST THE INITIAL GUESS
 
-    for (let i = 0; i < visibleArray.length; i++) {
+    for (let i = 0; i < ArrayVisibleToPlayer.length; i++) {
       if (guess === array[i]) {
-        checkForCorrect++;
-        visibleArray[i] = guess; //if the guess matches with the element in the array then it will be replaced w/the correct letter in the correct space
+        checkForCorrectGuess++;
+        ArrayVisibleToPlayer[i] = guess; //if the guess matches with the element in the array then it will be replaced w/the correct letter in the correct space
         addedBlanks.children[i].innerHTML = guess;
-        // visibleCells.cells[i].innerHTML = guess;
       }
     }
 
-    //this is the logic for when a wrong letter is guessed
-    if (checkForCorrect === 0) {
-      limbCount++;
-      console.log(`You have guessed ${limbCount} wrong letters`);
-      newVisibleList.unshift(guess); //adding the current guess value to the wrong letters list
-      if (limbCount === 1) {
-        document.getElementById("platform").classList.remove("hidden");
-      } else if (limbCount === 2) {
-        document.getElementById("post").classList.remove("hidden");
-      } else if (limbCount === 3) {
-        document.getElementById("rope").classList.remove("hidden");
-      } else if (limbCount === 4) {
-        document.getElementById("head").classList.remove("hidden");
-      } else if (limbCount === 5) {
-        document.getElementById("body").classList.remove("hidden");
-      } else if (limbCount === 6) {
-        document.getElementById("leftArm").classList.remove("hidden");
-      } else if (limbCount === 7) {
-        document.getElementById("rightArm").classList.remove("hidden");
-      } else if (limbCount === 8) {
-        document.getElementById("leftLeg").classList.remove("hidden");
-      } else if (limbCount === 9) {
-        document.getElementById("rightLeg").classList.remove("hidden");
-      } else if (limbCount > 9) {
-        document.getElementById("reset").classList.remove("hidden");
+    if (checkForCorrectGuess === 0) {
+      incorrectGuessCount++;
+      console.log(`You have guessed ${incorrectGuessCount} wrong letters`);
+      incorrectLettersList.unshift(guess); //adding the current guess value to the wrong letters list
+      if (incorrectGuessCount === 1) {
+        removeClassName("platform","hidden");
+      } else if (incorrectGuessCount === 2) {
+        removeClassName("post","hidden");
+      } else if (incorrectGuessCount === 3) {
+        removeClassName("rope","hidden");
+      } else if (incorrectGuessCount === 4) {
+        removeClassName("head", "hidden");
+      } else if (incorrectGuessCount === 5) {
+        removeClassName("body","hidden");
+      } else if (incorrectGuessCount === 6) {
+        removeClassName("leftArm","hidden");
+      } else if (incorrectGuessCount === 7) {
+        removeClassName("rightArm","hidden");
+      } else if (incorrectGuessCount === 8) {
+        removeClassName("leftLeg","hidden");
+      } else if (incorrectGuessCount === 9) {
+        removeClassName("rightLeg","hidden");
+      } else if (incorrectGuessCount > 9) {
+        removeClassName("reset","hidden");
         document.getElementById(
           "finalMessage"
         ).innerHTML = `Oh no! The correct word was ${Hangmanstring}. Try again!`;
-        document.getElementById("letter").classList.add("hidden");
-        document.getElementById("submit").classList.add("hidden");
-        document.getElementById("hangmanContainer").classList.add("gameLost");
+        // document.getElementById("letter").classList.add("hidden");
+        addClassName("letter","hidden");
+        // document.getElementById("submit").classList.add("hidden");
+        addClassName("submit","hidden");
+        // document.getElementById("hangmanContainer").classList.add("gameLost");
+        addClassName("hangmanContainer","gameLost");
       }
     }
 
-    console.log(`You're incorrect guesses are: ${newVisibleList}`);
-    console.log(newVisibleList);
-    document.getElementById("wrongGuessContainer").innerHTML = newVisibleList;
-
-    checkForBlanks = visibleArray.includes("?");
-    console.log(checkForBlanks); //used to stop the while loop when there are no more place holders present
-    console.log(visibleArray); //outputs the current/live version of the array with correct guessed letters
+    console.log(`You're incorrect guesses are: ${incorrectLettersList}`);
+    console.log(incorrectLettersList);
+    document.getElementById("wrongGuessContainer").innerHTML = incorrectLettersList;
+    checkForBlanks = ArrayVisibleToPlayer.includes("?");
+    // console.log(checkForBlanks); //used to stop the while loop when there are no more place holders present
+    // console.log(ArrayVisibleToPlayer); //outputs the current/live version of the array with correct guessed letters
   }
 
   //THIS IS THE TEMPLATE CODE FOR WHAT WILL HAPPEN WHEN THE PLAYER WINS THE GAME
-  if (checkForBlanks === false && limbCount <= 9) {
-    console.log(`You guessed it! The word was ${Hangmanstring}`);
+  if (checkForBlanks === false && incorrectGuessCount <= 9) {
+    // console.log(`You guessed it! The word was ${Hangmanstring}`);
     document.getElementById(
       "finalMessage"
     ).innerHTML = `You guessed it! The answer is "${Hangmanstring}"`;
-    document.getElementById("reset").classList.remove("hidden");
-    document.getElementById("letter").classList.add("hidden");
-    document.getElementById("submit").classList.add("hidden");
-    document.getElementById("hangmanContainer").classList.add("gameWon");
+    removeClassName("reset","hidden");
+    addClassName("letter","hidden");
+    addClassName("submit","hidden");
+    addClassName("hangmanContainer","gameWon");
   }
   //clearing the guess box after submit
   function clearGuess() {
@@ -198,3 +166,4 @@ document.querySelector(".reload").addEventListener("click", function () {
   //need to write code to reset the game and pick a new word to try to solve
   location.reload(); //just reloading the page now
 });
+
