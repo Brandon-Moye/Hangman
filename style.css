@@ -29,8 +29,29 @@ body {
   margin-bottom: 1rem;
 }
 
+.returnToSite:link,
+.returnToSite:visited {
+  display: block;
+  font-size: 5rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  background: #e35400;
+  padding: 1rem;
+  text-decoration: none;
+  color: black;
+  width: 100vw;
+  transition: all 0.2s;
+}
+
+.returnToSite:hover,
+.returnToSite:active {
+  background: black;
+  color: #e35400;
+}
+
 .gameContainer {
   max-width: 120rem;
+  max-height: 100vh;
   padding: 0 3.2rem;
   margin: 0 auto;
 }
@@ -39,7 +60,7 @@ body {
   /* display: relative; */
   width: 75rem;
   margin: 0 auto;
-  height: 30rem;
+  height: 25rem;
   border-radius: 5rem;
   background: lightgrey;
   margin-bottom: 2rem;
@@ -49,14 +70,15 @@ body {
   padding: 1rem 1rem;
   display: flex;
   justify-content: center;
-  margin-bottom: 5rem;
+  margin-bottom: 2.5rem;
 }
 
 .submit {
-  font-size: 5rem;
+  font-size: 2.5rem;
+  width: 10rem;
   padding: 1rem 1rem;
   margin-left: 1rem;
-  border-radius: 2.5rem;
+  border-radius: 25px;
   border: none;
   background: #e67e22;
   color: #733f11;
@@ -71,7 +93,7 @@ body {
 }
 
 #letter {
-  font-size: 5rem;
+  font-size: 3rem;
   width: 10rem;
   border-radius: 2.5rem;
   border: none;
@@ -88,7 +110,7 @@ body {
 }
 
 #hint {
-  font-size: 3rem;
+  font-size: 2.5rem;
   /* display: flex;
   justify-content: center;
   align-items: center; */
@@ -137,7 +159,7 @@ body {
   /* height: 50px; */
   color: #400e0f;
   width: 75rem;
-  height: 10rem;
+  height: 7.5rem;
   font-size: 5rem;
   margin-bottom: 1.2rem;
   border-radius: 2.5rem;
@@ -159,8 +181,8 @@ td {
   align-items: center;
   justify-content: center;
   color: black;
-  width: 10rem;
-  height: 10rem;
+  width: 7.5rem;
+  height: 7.5rem;
   font-size: 5rem;
   /* border-radius: 20%; */
   margin-bottom: 1rem;
@@ -212,7 +234,7 @@ td {
 .platform {
   border-top: 1px solid black;
   position: relative;
-  top: 250px;
+  top: 22.5rem;
   left: 250px;
   width: 200px;
   /* height: 50px; */
@@ -224,7 +246,7 @@ td {
   position: relative;
   width: 10rem;
   height: 20rem;
-  top: 5rem;
+  top: 2.5rem;
   left: 27.5rem;
 }
 
@@ -232,7 +254,7 @@ td {
   border-left: 1px solid black;
   position: relative;
   height: 7rem;
-  top: -15rem;
+  top: -17.5rem;
   left: 37.5rem;
 }
 
@@ -242,7 +264,7 @@ td {
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
-  top: -15rem;
+  top: -17.5rem;
   left: 36rem;
 }
 
@@ -250,7 +272,7 @@ td {
   position: relative;
   border-left: 1px solid black;
   height: 5rem;
-  top: -15rem;
+  top: -17.5rem;
   left: 37.5rem;
 }
 
@@ -259,7 +281,7 @@ td {
   border-left: 1px solid black;
   height: 2.5rem;
   transform: rotate(20deg);
-  top: -6rem;
+  top: -8.5rem;
   left: 34.8rem;
 }
 
@@ -268,7 +290,7 @@ td {
   border-left: 1px solid black;
   height: 2.5rem;
   transform: rotate(340deg);
-  top: -34rem;
+  top: -36.5rem;
   left: 35.74rem;
 }
 
@@ -282,7 +304,7 @@ td {
   border-left: 1px solid black;
   height: 2.5rem;
   transform: rotate(20deg);
-  top: -7.6rem;
+  top: -10rem;
   left: 34.8rem;
 }
 
@@ -291,6 +313,6 @@ td {
   border-left: 1px solid black;
   height: 2.5rem;
   transform: rotate(340deg);
-  top: -35.6rem;
+  top: -38.2rem;
   left: 35.7rem;
 }
