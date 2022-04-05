@@ -79,6 +79,14 @@ for (let i = 0; i < visibleArray.length; i++) {
 document.querySelector(".submit").addEventListener("click", function () {
   guessingLetters(); //calling the function above
 
+  function addingLimbsToHangman(limb) {
+    document.getElementById(limb).classList.remove("hidden");
+  }
+
+  function endGameSetup(endGameClasses, classToAdd) {
+    document.getElementById(endGameClasses).classList.add(classToAdd);
+  }
+
   if (checkForBlanks === true) {
     let guess = guessedLetters[guessedLetters.length - 1]; //pulls the most recent guess from the guessedLetters array made above in the function
     checkForCorrect = 0; //initializing variable
@@ -93,13 +101,13 @@ document.querySelector(".submit").addEventListener("click", function () {
       }
     }
 
-    function addingLimbsToHangman(limb) {
-      document.getElementById(limb).classList.remove("hidden");
-    }
+    // function addingLimbsToHangman(limb) {
+    //   document.getElementById(limb).classList.remove("hidden");
+    // }
 
-    function endGameSetup(endGameClasses, classToAdd) {
-      document.getElementById(endGameClasses).classList.add(classToAdd);
-    }
+    // function endGameSetup(endGameClasses, classToAdd) {
+    //   document.getElementById(endGameClasses).classList.add(classToAdd);
+    // }
 
     //this is the logic for when a wrong letter is guessed
     if (checkForCorrect === 0) {
@@ -134,7 +142,6 @@ document.querySelector(".submit").addEventListener("click", function () {
         endGameSetup("letter", "hidden");
         endGameSetup("submit", "hidden");
         endGameSetup("hangmanContainer", "gameLost");
-        // document.getElementById("hangmanContainer").classList.add("gameLost");
       }
     }
 
@@ -150,12 +157,9 @@ document.querySelector(".submit").addEventListener("click", function () {
       "finalMessage"
     ).innerHTML = `You guessed it! The answer is "${Hangmanstring}"`;
     document.getElementById("reset").classList.remove("hidden");
-    document.getElementById("letter").classList.add("hidden");
-    // endGameSetup("letter", "hidden");
-    document.getElementById("submit").classList.add("hidden");
-    // endGameSetup("submit", "hidden");
-    document.getElementById("hangmanContainer").classList.add("gameWon");
-    // endGameSetup("hangmanContainer","gameWon")
+    endGameSetup("letter", "hidden");
+    endGameSetup("submit", "hidden");
+    endGameSetup("hangmanContainer", "gameWon");
   }
   //clearing the guess box after submit
   function clearGuess() {
